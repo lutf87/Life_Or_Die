@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\MapelController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,3 +21,7 @@ Route::get('/', function () {
 Route::get('/dashboard', function() {
     return view('pages.dashboard');
 });
+
+Route::get('/mapel', [MapelController::class, 'index'])->name('mapel.index');
+Route::get('/mapel/create', [MapelController::class, 'create'])->name('mapel.create');
+Route::post('/mapel/store', [MapelController::class, 'store'])->name('mapel.store');

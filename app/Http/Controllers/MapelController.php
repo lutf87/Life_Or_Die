@@ -14,7 +14,8 @@ class MapelController extends Controller
      */
     public function index()
     {
-        //
+        $mapel = Mapel::all();
+        return view('pages.mapel.index', compact('mapel'));
     }
 
     /**
@@ -24,7 +25,7 @@ class MapelController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.mapel.create');
     }
 
     /**
@@ -35,7 +36,15 @@ class MapelController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validateData = $request->validate([
+            'nama_mapel' => 'required',
+            'kode_mapel' => 'required'
+        ]);
+
+        Mapel::create($validateData);
+
+        return redirect()->route('mapel.index')->with('success', 'Mata Pelajaran Berhasil Diinputkan');
+
     }
 
     /**
